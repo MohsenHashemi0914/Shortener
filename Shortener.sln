@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BB8DFD9B-5AAB-4E65-955C-BA0E21B02312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortenerEndpoint", "ShortenerEndpoint\ShortenerEndpoint.csproj", "{EB84DF14-F6AC-4D9A-9765-3E3BEFD7C46D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortenerEndpoint", "ShortenerEndpoint\ShortenerEndpoint.csproj", "{EB84DF14-F6AC-4D9A-9765-3E3BEFD7C46D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "OrderService\OrderService.csproj", "{FA459899-D208-4150-8B21-2FF9494B7748}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,11 +19,16 @@ Global
 		{EB84DF14-F6AC-4D9A-9765-3E3BEFD7C46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB84DF14-F6AC-4D9A-9765-3E3BEFD7C46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB84DF14-F6AC-4D9A-9765-3E3BEFD7C46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA459899-D208-4150-8B21-2FF9494B7748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA459899-D208-4150-8B21-2FF9494B7748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA459899-D208-4150-8B21-2FF9494B7748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA459899-D208-4150-8B21-2FF9494B7748}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EB84DF14-F6AC-4D9A-9765-3E3BEFD7C46D} = {BB8DFD9B-5AAB-4E65-955C-BA0E21B02312}
+		{FA459899-D208-4150-8B21-2FF9494B7748} = {BB8DFD9B-5AAB-4E65-955C-BA0E21B02312}
 	EndGlobalSection
 EndGlobal

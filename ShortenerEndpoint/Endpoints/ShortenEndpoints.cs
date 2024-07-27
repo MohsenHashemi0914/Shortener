@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using ShortenerEndpoint.Services;
 
 namespace ShortenerEndpoint.Endpoints;
