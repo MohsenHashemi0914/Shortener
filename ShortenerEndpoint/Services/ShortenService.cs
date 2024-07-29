@@ -5,18 +5,22 @@ using ShortenerEndpoint.Models;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
+using ShortenerEndpoint.Observability.Metrics;
 
 namespace ShortenerEndpoint.Services;
 
 public sealed class ShortenService(
     ShortenDbContext dbContext,
-    IOptions<AppSettings> settings)
+    IOptions<AppSettings> settings,
+    ShortenDiagnostic shortenDiagnostic)
 {
     private readonly AppSettings _settings = settings.Value;
     private readonly ShortenDbContext _dbContext = dbContext;
+    private readonly ShortenDiagnostic _shortenDiagnostic = shortenDiagnostic;
 
     public async Task<ErrorOr<string>> GetDestinationUrlAsync(string shortenCode, CancellationToken cancellationToken)
     {
+        _shortenDiagnostic.AddRedirect();
         var urlLink = await _dbContext.UrlLinks.FirstOrDefaultAsync(x => x.ShortenCode == shortenCode, cancellationToken);
         if (urlLink is null)
         {
@@ -28,6 +32,7 @@ public sealed class ShortenService(
 
     public async Task<ErrorOr<string>> GetShortenUrlAsync(string longUrl, CancellationToken cancellationToken)
     {
+        _shortenDiagnostic.AddShorten();
         var url = await _dbContext.UrlLinks.FirstOrDefaultAsync(x => x.DestinationUrl == longUrl, cancellationToken);
 
         if(url is not null)
