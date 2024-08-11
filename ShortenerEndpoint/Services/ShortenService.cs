@@ -20,13 +20,15 @@ public sealed class ShortenService(
 
     public async Task<ErrorOr<string>> GetDestinationUrlAsync(string shortenCode, CancellationToken cancellationToken)
     {
-        _shortenDiagnostic.AddRedirect();
         var urlLink = await _dbContext.UrlLinks.FirstOrDefaultAsync(x => x.ShortenCode == shortenCode, cancellationToken);
         if (urlLink is null)
         {
+
+            _shortenDiagnostic.AddFailedRedirect(shortenCode);
             return Error.NotFound(code: "NotFound", description: "Item not found.");
         }
 
+        _shortenDiagnostic.AddRedirect(shortenCode);
         return urlLink.DestinationUrl;
     }
 

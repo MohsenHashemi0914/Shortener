@@ -18,7 +18,9 @@ builder.Services.AddOpenTelemetry()
                    .WithMetrics(builder =>
                    {
                        builder.AddPrometheusExporter();
-
+                       builder.AddRuntimeInstrumentation();
+                       builder.AddAspNetCoreInstrumentation();
+                       
                        var meterNames = new[]
                        {
                            ShortenDiagnostic.MeterName
