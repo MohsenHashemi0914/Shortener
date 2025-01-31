@@ -9,7 +9,7 @@ var retryOptions = new RetryStrategyOptions
 
 var pipline = new ResiliencePipelineBuilder().AddRetry(retryOptions).Build();
 
-var action = () =>
+var action = async () =>
 {
     using var client = new HttpClient
     {
@@ -18,9 +18,9 @@ var action = () =>
 
     var longUrl = "https://github.com/MohsenHashemi0914";
     Console.WriteLine($"Try get long \"{longUrl}\" url from shortener service ...");
-    var data = client.GetStringAsync($"Shorten?long_url={longUrl}").GetAwaiter().GetResult();
+    var data = await client.GetStringAsync($"Shorten?long_url={longUrl}");
     Console.WriteLine($"Short url is {data}");
 };
 
-pipline.Execute(action);
+await pipline.Execute(action);
 Console.ReadLine();

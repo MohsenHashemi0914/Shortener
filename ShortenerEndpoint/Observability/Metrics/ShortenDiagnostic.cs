@@ -22,7 +22,6 @@ public sealed class ShortenDiagnostic
         _failedRedirectCounter = meter.CreateCounter<long>(FailedRedirectName);
     }
 
-
     public void AddShorten() => _shortenCounter.Add(1);
 
     public void AddRedirect(string shortenCode) => _redirectCounter.Add(1, new TagList

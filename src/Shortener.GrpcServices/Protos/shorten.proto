@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Shortener.GrpcServices";
+
+package shorten;
+
+service ShortenUrl
+{
+	rpc GetShortenUrlAsync (ShortenUrlRequest) returns (ShortenUrlResponse);
+}
+
+message ShortenUrlRequest
+{
+	string longUrl = 1;
+}
+
+message ShortenUrlResponse
+{
+	string shortenUrl = 1;
+}

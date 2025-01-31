@@ -1,4 +1,5 @@
 using OpenTelemetry.Metrics;
+using Shortener.GrpcServices.Extensions;
 using ShortenerEndpoint;
 using ShortenerEndpoint.Endpoints;
 using ShortenerEndpoint.Extensions.DI;
@@ -13,6 +14,8 @@ builder.Services.AddScoped<ShortenService>();
 builder.Services.Configure<AppSettings>(builder.Configuration);
 builder.AddMongoDb();
 builder.Services.AddSingleton<ShortenDiagnostic>();
+
+builder.Services.AddShortenerGrpc();
 
 builder.Services.AddOpenTelemetry()
                    .WithMetrics(builder =>
@@ -38,6 +41,7 @@ app.UseHttpsRedirection();
 
 app.MapShortenEndpoint();
 app.MapRedirectEndpoint();
+app.MapShortenerGrpcService<ShortenGrpcService>();
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.Run();
